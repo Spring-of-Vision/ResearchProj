@@ -1,0 +1,9 @@
+{
+    "source": "G:/features/testing",
+    "outdir": "data/out/",
+    "outfile": "model-histonly.h5",
+    "batch_size": 2,
+    "epochs": 20,
+    "validation_size": 0.2,
+    "dimensions_to_use": 1
+}
