@@ -5,8 +5,11 @@ import os
 import glob
 import numpy as np
 import sklearn
+import pydotplus
+import graphviz
 
 from trustee.utils import log
+from trustee.utils.tree import get_dt_info, top_k_prune
 
 import tensorflow as tf
 from tensorflow import keras
@@ -19,6 +22,7 @@ from trustee import ClassificationTrustee
 from trustee.report.trust import TrustReport
 
 from sklearn.metrics import classification_report
+from sklearn import tree
 
 import json
 
@@ -78,11 +82,15 @@ def MyFeature(feature_index):
     
     return f'({x},{y})'
 
-def get_stats(trust_report, num_stability_iter, features, classes):
-    all_trees = trust_report.get_all_students()  
+def get_stats(trust_report):
+    
+    all_trees = trust_report.trustee.get_all_students()  
+    num_stability_iter= trust_report.trustee_num_stability_iter
+    features= trust_report.feature_names
+    classes= trust_report.class_names
 
     all_features = {}
-    i=0
+    i = 0
     for j in range(num_stability_iter):
         for dt, rev in all_trees[j]:
             dot_data = tree.export_graphviz(
@@ -91,9 +99,9 @@ def get_stats(trust_report, num_stability_iter, features, classes):
                 feature_names=features,
                 filled=True,
                 rounded=True,
-                special_characters=True,)
+                special_characters=True)
             graph = graphviz.Source(dot_data)
-            graph.render(f'rf_pool tree x,y {i}')    
+            graph.render(f'rf_pool_tree_{i}')    
     
             features_used, splits, branches = get_dt_info(dt)
     
@@ -105,18 +113,20 @@ def get_stats(trust_report, num_stability_iter, features, classes):
                 all_features[feat]["num_trees"] += 1
                 all_features[feat]["samples"] += features_used[feat]["samples"]
                 
-            i+=1
+            i += 1
     
-    print()
-    print("all tree:")    
-    for feat in all_features:   
-         print(f'feat_name: {all_features[feat]["feat_name"]}, count_total: {all_features[feat]["count_total"]}, num_trees: {all_features[feat]["num_trees"]}, samples: {all_features[feat]["samples"]}')
-    
-    print()
-    sorted_features = sorted(all_features.items(), key=lambda x: (x[1]["num_trees"], x[1]["samples"]), reverse=True)
-    print("sorted features:")
-    for feat, data in sorted_features:
-        print(f'feat_name: {all_features[feat]["feat_name"]}, count_total: {data["count_total"]}, num_trees: {data["num_trees"]}, samples: {data["samples"]}')
+    # save in txt file
+    with open('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/stats.txt', 'w') as file:
+        file.write("all tree:\n")    
+        for feat in all_features:   
+            file.write(f'feat_name: {all_features[feat]["feat_name"]}, count_total: {all_features[feat]["count_total"]}, num_trees: {all_features[feat]["num_trees"]}, samples: {all_features[feat]["samples"]}\n')
+        
+        file.write("\n")
+        
+        sorted_features = sorted(all_features.items(), key=lambda x: (x[1]["num_trees"], x[1]["samples"]), reverse=True)
+        file.write("sorted features:\n")
+        for feat, data in sorted_features:
+            file.write(f'feat_name: {data["feat_name"]}, count_total: {data["count_total"]}, num_trees: {data["num_trees"]}, samples: {data["samples"]}\n')
 
     
 def get_labels(file_list):
@@ -272,22 +282,16 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
 
     # אפשר גם שנגדיר ישר בסטראקט פה
     if trust_report.feature_names is None:
-      trust_report.feature_names = [f"feature_({MyFeature(i)})" for i in range(X_train.shape[1])]
-      #print(f'featurs name: {trust_report.feature_names}')
-      #print(f'use_features: {trust_report.use_features}')
-
+      trust_report.feature_names = [f"feature_{MyFeature(i)}" for i in range(X_train.shape[1])]
+      
     print(trust_report)
-    #trust_report.plot('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
+    trust_report.plot('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("plot done")
     trust_report.save('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("save done")
     #logger.log(trust_report)
 
-    #features = ['feature_{}'.format(MyFeature(i)) for i in range(1, 10001)] # אולי לשלוף מהtrust_report
-    #classes = ['GoogleDoc', 'GoogleDrive', 'Youtube']   # אולי לשלוף מהtrust_report
-    #num_stability_iter = 10  # אולי לשלוף מהtrust_report
-
-    get_stats(trust_report, trust_report.trustee_num_stability_iter, trust_report.feature_names, trust_report.class_names)
+    get_stats(trust_report)
 
     """  only for the metric_results
     y_test = tf.convert_to_tensor(y_test)
