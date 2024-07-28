@@ -67,6 +67,17 @@ def to_numpy(data):
 
     return data_array
 
+def MyFeature(feature_index):
+    
+    pooled_array_size = 1500 
+    
+    # calculate x,y coordinates
+    y = feature_index // pooled_array_size
+    x = feature_index
+    x = x % pooled_array_size
+    
+    return f'{x},{y}'
+
 def get_labels(file_list):
     labels = []
     for file in file_list:
@@ -220,7 +231,7 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
 
     # אפשר גם שנגדיר ישר בסטראקט פה
     if trust_report.feature_names is None:
-      trust_report.feature_names = [f"feature_{i}" for i in range(X_train.shape[1])]
+      trust_report.feature_names = [f"feature_({MyFeature(i)})" for i in range(X_train.shape[1])]
       #print(f'featurs name: {trust_report.feature_names}')
       #print(f'use_features: {trust_report.use_features}')
 
