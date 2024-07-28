@@ -76,8 +76,49 @@ def MyFeature(feature_index):
     x = feature_index
     x = x % pooled_array_size
     
-    return f'{x},{y}'
+    return f'({x},{y})'
 
+def get_stats(trust_report, num_stability_iter, features, classes):
+    all_trees = trust_report.get_all_students()  
+
+    all_features = {}
+    i=0
+    for j in range(num_stability_iter):
+        for dt, rev in all_trees[j]:
+            dot_data = tree.export_graphviz(
+                dt,
+                class_names=classes,
+                feature_names=features,
+                filled=True,
+                rounded=True,
+                special_characters=True,)
+            graph = graphviz.Source(dot_data)
+            graph.render(f'rf_pool tree x,y {i}')    
+    
+            features_used, splits, branches = get_dt_info(dt)
+    
+            for feat in features_used:
+                if feat not in all_features:
+                    all_features[feat] = {"feat_name": MyFeature(feat), "count_total": 0, "num_trees": 0, "samples": 0}
+    
+                all_features[feat]["count_total"] += features_used[feat]["count"]
+                all_features[feat]["num_trees"] += 1
+                all_features[feat]["samples"] += features_used[feat]["samples"]
+                
+            i+=1
+    
+    print()
+    print("all tree:")    
+    for feat in all_features:   
+         print(f'feat_name: {all_features[feat]["feat_name"]}, count_total: {all_features[feat]["count_total"]}, num_trees: {all_features[feat]["num_trees"]}, samples: {all_features[feat]["samples"]}')
+    
+    print()
+    sorted_features = sorted(all_features.items(), key=lambda x: (x[1]["num_trees"], x[1]["samples"]), reverse=True)
+    print("sorted features:")
+    for feat, data in sorted_features:
+        print(f'feat_name: {all_features[feat]["feat_name"]}, count_total: {data["count_total"]}, num_trees: {data["num_trees"]}, samples: {data["samples"]}')
+
+    
 def get_labels(file_list):
     labels = []
     for file in file_list:
@@ -241,6 +282,12 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
     trust_report.save('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("save done")
     #logger.log(trust_report)
+
+    features = ['feature_{}'.format(MyFeature(i)) for i in range(1, 10001)] # אולי לשלוף מהtrust_report
+    classes = ['GoogleDoc', 'GoogleDrive', 'Youtube']   # אולי לשלוף מהtrust_report
+    num_stability_iter = 10  # אולי לשלוף מהtrust_report
+
+    get_stats(trust_report, num_stability_iter, features, classes)
 
     """  only for the metric_results
     y_test = tf.convert_to_tensor(y_test)
