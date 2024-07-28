@@ -283,11 +283,11 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
     print("save done")
     #logger.log(trust_report)
 
-    features = ['feature_{}'.format(MyFeature(i)) for i in range(1, 10001)] # אולי לשלוף מהtrust_report
-    classes = ['GoogleDoc', 'GoogleDrive', 'Youtube']   # אולי לשלוף מהtrust_report
-    num_stability_iter = 10  # אולי לשלוף מהtrust_report
+    #features = ['feature_{}'.format(MyFeature(i)) for i in range(1, 10001)] # אולי לשלוף מהtrust_report
+    #classes = ['GoogleDoc', 'GoogleDrive', 'Youtube']   # אולי לשלוף מהtrust_report
+    #num_stability_iter = 10  # אולי לשלוף מהtrust_report
 
-    get_stats(trust_report, num_stability_iter, features, classes)
+    get_stats(trust_report, trust_report.trustee_num_stability_iter, trust_report.feature_names, trust_report.class_names)
 
     """  only for the metric_results
     y_test = tf.convert_to_tensor(y_test)
