@@ -287,7 +287,7 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
     print(trust_report)
     trust_report.plot('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("plot done")
-    trust_report.save('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
+    trust_report._save_dts('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee', save_all = True)
     print("save done")
     #logger.log(trust_report)
 
