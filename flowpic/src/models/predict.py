@@ -89,6 +89,9 @@ def get_stats(trust_report):
     features= trust_report.feature_names
     classes= trust_report.class_names
 
+    path = "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/student_trees"
+    os.makedirs(path, exist_ok=True)
+
     all_features = {}
     i = 0
     for j in range(num_stability_iter):
@@ -101,7 +104,7 @@ def get_stats(trust_report):
                 rounded=True,
                 special_characters=True)
             graph = graphviz.Source(dot_data)
-            graph.render(f'rf_pool_tree_{i}')    
+            graph.render(f'{path}/student_tree_{i}')    
     
             features_used, splits, branches = get_dt_info(dt)
     
@@ -268,7 +271,7 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
         y_test=y_test,
         top_k=10,
         max_iter=1,
-        trustee_num_iter=1,
+        trustee_num_iter=5,
         #trustee_num_stability_iter=30,
         num_pruning_iter=1,
         trustee_sample_size=0.3,
@@ -287,7 +290,7 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
     print(trust_report)
     trust_report.plot('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("plot done")
-    trust_report._save_dts('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee', save_all = True)
+    trust_report._save_dts('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("save done")
     #logger.log(trust_report)
 
