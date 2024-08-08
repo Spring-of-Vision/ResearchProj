@@ -2,6 +2,7 @@ import src
 from src.models.ingesting import get_dataset
 
 import os
+import shutil
 import glob
 import numpy as np
 import sklearn
@@ -90,6 +91,12 @@ def get_stats(trust_report):
     classes= trust_report.class_names
 
     path = "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/student_trees"
+    
+    # Check if the directory exists and delete the directory and its contents
+    if os.path.exists(path):
+        shutil.rmtree(path)
+
+    # Create the directory again
     os.makedirs(path, exist_ok=True)
 
     all_features = {}
@@ -271,7 +278,7 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
         y_test=y_test,
         top_k=10,
         max_iter=1,
-        trustee_num_iter=5,
+        trustee_num_iter=1,
         #trustee_num_stability_iter=30,
         num_pruning_iter=1,
         trustee_sample_size=0.3,
