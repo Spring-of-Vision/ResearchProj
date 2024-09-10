@@ -1,3 +1,7 @@
+import warnings
+
+warnings.filterwarnings("ignore")
+
 import src
 from src.models.ingesting import get_dataset
 
@@ -26,6 +30,7 @@ from sklearn.metrics import classification_report
 from sklearn import tree
 
 import json
+
 
 # Load test_files from a JSON file
 def load_files(filepath):
@@ -74,7 +79,7 @@ def to_numpy(data):
 
 def MyFeature(feature_index):
     
-    pooled_array_size = 1500 
+    pooled_array_size = 32 
     
     # calculate x,y coordinates
     y = feature_index // pooled_array_size
@@ -278,9 +283,9 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
         y_test=y_test,
         top_k=10,
         max_iter=1,
-        trustee_num_iter=1,
-        #trustee_num_stability_iter=30,
-        num_pruning_iter=1,
+        trustee_num_iter=25,
+        trustee_num_stability_iter=10,
+        num_pruning_iter=10,
         trustee_sample_size=0.3,
         analyze_stability=True,
         analyze_branches=True,
@@ -297,11 +302,14 @@ def pred(modelpath, weightspath, datapath, batch_size, dimensions_to_use):
     print(trust_report)
     trust_report.plot('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("plot done")
-    trust_report._save_dts('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
+    trust_report.save('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
+    #trust_report._save_dts('/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee')
     print("save done")
     #logger.log(trust_report)
 
     get_stats(trust_report)
+
+    print(trust_report)
 
     """  only for the metric_results
     y_test = tf.convert_to_tensor(y_test)

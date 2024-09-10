@@ -35,7 +35,7 @@ def train(source, outdir, outfile, batch_size, epochs, validation_size, dimensio
 
     train_files, val_files = train_test_split(train_files, test_size=validation_size)
 
-    src.INPUT_SHAPE = (2250000,) #removed dimensions to use
+    src.INPUT_SHAPE = (1024,) #removed dimensions to use
 
     train, train_steps = get_dataset(train_files, batch_size, dimensions_to_use)
     val, val_steps = get_dataset(val_files, batch_size, dimensions_to_use)
@@ -56,15 +56,15 @@ def train(source, outdir, outfile, batch_size, epochs, validation_size, dimensio
 
     #TODO added reshape layer
     # Reshape layer to convert 2D input to 4D
-    model.add(layers.Reshape((1, 1500*1500, 1), input_shape=src.INPUT_SHAPE)) #1500,1500 to 1,1500*1500
+    model.add(layers.Reshape((1, 32*32, 1), input_shape=src.INPUT_SHAPE)) #1500,1500 to 1,1500*1500
 
     # Args: filters, kernel_size, strides
-    model.add(layers.Conv2D(10, (1,100), (1,25), activation='relu')) #, input_shape=src.INPUT_SHAPE)) #(10,10) and (5,5) to 1d
+    model.add(layers.Conv2D(10, (1,3), (1,1), activation='relu')) #, input_shape=src.INPUT_SHAPE)) #(10,10) and (5,5) to 1d
     # Args: pool_size, strides (defaults to pool)
-    model.add(layers.MaxPool2D((1,4))) #(2,2) to 1d
+    #model.add(layers.MaxPool2D((1,4))) #(2,2) to 1d
     model.add(layers.Conv2D(20, (1,100), (1,25), activation='relu')) #(10,10) and (5,5) to 1d
     model.add(layers.Dropout(0.25))
-    model.add(layers.MaxPool2D((1,4))) #(2,2) to 1d
+    #model.add(layers.MaxPool2D((1,4))) #(2,2) to 1d
     model.add(layers.Flatten())
     model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dropout(0.5))
