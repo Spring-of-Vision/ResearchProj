@@ -1,4 +1,4 @@
-Copyright (c) 2021 Ariel University.
+#Copyright (c) 2021 Ariel University.
 
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input,Lambda,LeakyReLU,Bidirectional,Flatten,Conv2D,MaxPool2D,LSTM,Dense
