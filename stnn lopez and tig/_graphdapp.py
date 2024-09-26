@@ -1,3 +1,9 @@
+'''
+Copyright (c) 2021 Ariel University.
+This code is a slightly modified version, the original model can be found here:
+https://github.com/ArielCyber/OSF-EIMTC/blob/main/src/EIMTC/modals/_graphdapp.py
+'''
+
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input,Layer,Concatenate,Dense,BatchNormalization,Dropout,Reshape,Lambda
 from tensorflow.keras import activations
