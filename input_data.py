@@ -1,3 +1,11 @@
+# Code below was copied and adapted from the original code for the Trustee examples
+# Available at https://github.com/TrusteeML/emperor/tree/main/use_cases/vpn_case
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file, You
+# can obtain one at http://mozilla.org/MPL/2.0/.
+# ==============================================================================
+
 """Functions for downloading and reading MNIST data."""
 from __future__ import absolute_import, division, print_function
 
