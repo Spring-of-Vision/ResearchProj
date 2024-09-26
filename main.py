@@ -1,4 +1,5 @@
-# Reproducibility of DeepTraffic shortcut learning
+# Reproducibility of DeepTraffic shortcut learning- adapted from Trustee's examples
+# The original can be found here: https://github.com/TrusteeML/emperor/tree/main/use_cases/vpn_case
 import os
 import numpy as np
 import input_data
