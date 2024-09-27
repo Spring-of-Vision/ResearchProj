@@ -1,9 +1,3 @@
-'''
-Copyright (c) 2021 Ariel University.
-This is a slightly modified version, the original model can be found here:
-https://github.com/ArielCyber/OSF-EIMTC/blob/main/src/EIMTC/modals/_lopez_protocol_header_fields_TDL.py
-'''
-
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input,GRU,Bidirectional,ReLU,Flatten, Dense
 from tensorflow.keras.constraints import max_norm 
