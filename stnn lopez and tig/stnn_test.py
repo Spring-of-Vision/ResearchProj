@@ -26,8 +26,8 @@ import graphviz
 def MyFeature(feature_index):
 
     # calculate x,y coordinates
-    rows = feature_index // 3
-    cols = feature_index % 3
+    rows = feature_index // 14
+    cols = feature_index % 14
 
     if rows == 0:
         stat = 'bi'
@@ -175,7 +175,7 @@ def main():
     stnn_model = STNNModality()
 
     # Compile the model
-    stnn_model.model.compile(optimizer=Adam(learning_rate=0.00007), loss=SparseCategoricalCrossentropy(), metrics=[SparseCategoricalAccuracy()])
+    stnn_model.model.compile(optimizer=Adam(learning_rate=0.00004), loss=SparseCategoricalCrossentropy(), metrics=[SparseCategoricalAccuracy()])
 
     # Compile the model
     #stnn_model.model.compile(optimizer=Adam(), loss=SparseCategoricalCrossentropy(from_logits=True), metrics=[SparseCategoricalAccuracy()])
@@ -246,8 +246,8 @@ def main():
     )
 
     # feature names
-    #if trust_report.feature_names is None:
-    #    trust_report.feature_names = [f'{MyFeature(i)}' for i in range(42)]
+    if trust_report.feature_names is None:
+        trust_report.feature_names = [f'{MyFeature(i)}' for i in range(42)]
 
     trust_report.plot('./trustee-stnn')
     print("plot done")
@@ -265,7 +265,7 @@ def main():
     dt, purnd_dt, agreement, reward = trust_report.trustee.explain()
     # Save the dt model to a file
     with open(
-            f"./trustee-lopez/decision_tree_model.pkl",
+            f"./trustee-stnn/decision_tree_model.pkl",
             'wb') as file:
         pickle.dump(dt, file)
 
