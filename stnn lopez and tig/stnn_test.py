@@ -29,12 +29,12 @@ def MyFeature(feature_index):
     rows = feature_index // 3
     cols = feature_index % 3
 
-    if cols == 0:
-        stat = 'bidrectional'
-    elif cols == 1:
-        stat = 'dir 0' # direction 0- server to client
+    if rows == 0:
+        stat = 'bi'
+    elif rows == 1:
+        stat = '0' # direction 0- server to client
     else:
-        stat = 'dir 1' # direction 1- client to server
+        stat = '1' # direction 1- client to server
 
     # The 14 stats
     strings = [
@@ -44,7 +44,7 @@ def MyFeature(feature_index):
         "packets/sec", "bytes/sec"
     ]
 
-    return f'{strings[rows]}, direction: {stat}'
+    return f'dir: {stat}, {strings[cols]}'
 
 # Custom Argmax Layer
 class ArgmaxLayer(Layer):
