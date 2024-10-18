@@ -1,0 +1,37 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label=<feature_(4,31) &le; 0.012<br/>gini = 0.664<br/>samples = 398<br/>value = [134, 147, 117]<br/>class = GoogleDoc>, fillcolor="#f5fef9"] ;
+1 [label=<feature_(0,28) &le; 0.032<br/>gini = 0.513<br/>samples = 254<br/>value = [133, 4, 117]<br/>class = GoogleDrive>, fillcolor="#fcf0e8"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<feature_(0,0) &le; 0.233<br/>gini = 0.108<br/>samples = 124<br/>value = [4, 3, 117]<br/>class = Youtube>, fillcolor="#8845e7"] ;
+1 -> 2 ;
+3 [label=<feature_(2,1) &le; 0.002<br/>gini = 0.049<br/>samples = 120<br/>value = [1, 2, 117]<br/>class = Youtube>, fillcolor="#843ee6"] ;
+2 -> 3 ;
+4 [label=<gini = 0.0<br/>samples = 117<br/>value = [0, 0, 117]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+3 -> 4 ;
+5 [label=<feature_(0,3) &le; 0.066<br/>gini = 0.444<br/>samples = 3<br/>value = [1, 2, 0]<br/>class = GoogleDoc>, fillcolor="#9cf2c0"] ;
+3 -> 5 ;
+6 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+5 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 2<br/>value = [0, 2, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+5 -> 7 ;
+8 [label=<feature_(29,14) &le; 0.015<br/>gini = 0.375<br/>samples = 4<br/>value = [3, 1, 0]<br/>class = GoogleDrive>, fillcolor="#eeab7b"] ;
+2 -> 8 ;
+9 [label=<gini = 0.0<br/>samples = 3<br/>value = [3, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+8 -> 9 ;
+10 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+8 -> 10 ;
+11 [label=<feature_(8,6) &le; 0.032<br/>gini = 0.015<br/>samples = 130<br/>value = [129, 1, 0]<br/>class = GoogleDrive>, fillcolor="#e5823b"] ;
+1 -> 11 ;
+12 [label=<gini = 0.0<br/>samples = 129<br/>value = [129, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+11 -> 12 ;
+13 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+11 -> 13 ;
+14 [label=<feature_(1,29) &le; 0.115<br/>gini = 0.014<br/>samples = 144<br/>value = [1, 143, 0]<br/>class = GoogleDoc>, fillcolor="#3ae582"] ;
+0 -> 14 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+15 [label=<gini = 0.0<br/>samples = 143<br/>value = [0, 143, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+14 -> 15 ;
+16 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+14 -> 16 ;
+}
