@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label=<feature_(4,31) &le; 0.012<br/>gini = 0.666<br/>samples = 398<br/>value = [128, 129, 141]<br/>class = Youtube>, fillcolor="#f9f6fe"] ;
+1 [label=<feature_(0,30) &le; 0.057<br/>gini = 0.513<br/>samples = 273<br/>value = [128, 4, 141]<br/>class = Youtube>, fillcolor="#f4edfd"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<feature_(29,0) &le; 0.013<br/>gini = 0.014<br/>samples = 139<br/>value = [1, 0, 138]<br/>class = Youtube>, fillcolor="#823ae5"] ;
+1 -> 2 ;
+3 [label=<gini = 0.0<br/>samples = 138<br/>value = [0, 0, 138]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+2 -> 3 ;
+4 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+2 -> 4 ;
+5 [label=<feature_(31,2) &le; 0.015<br/>gini = 0.1<br/>samples = 134<br/>value = [127, 4, 3]<br/>class = GoogleDrive>, fillcolor="#e68844"] ;
+1 -> 5 ;
+6 [label=<feature_(20,18) &le; 0.011<br/>gini = 0.016<br/>samples = 128<br/>value = [127, 0, 1]<br/>class = GoogleDrive>, fillcolor="#e5823b"] ;
+5 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 127<br/>value = [127, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+6 -> 7 ;
+8 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 0, 1]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+6 -> 8 ;
+9 [label=<feature_(18,8) &le; 0.013<br/>gini = 0.444<br/>samples = 6<br/>value = [0, 4, 2]<br/>class = GoogleDoc>, fillcolor="#9cf2c0"] ;
+5 -> 9 ;
+10 [label=<gini = 0.0<br/>samples = 2<br/>value = [0, 0, 2]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+9 -> 10 ;
+11 [label=<gini = 0.0<br/>samples = 4<br/>value = [0, 4, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+9 -> 11 ;
+12 [label=<gini = 0.0<br/>samples = 125<br/>value = [0, 125, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+0 -> 12 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

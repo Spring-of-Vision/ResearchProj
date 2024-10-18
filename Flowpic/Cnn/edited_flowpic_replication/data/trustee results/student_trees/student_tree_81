@@ -1,0 +1,37 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label=<feature_(4,31) &le; 0.014<br/>gini = 0.664<br/>samples = 398<br/>value = [119, 146, 133]<br/>class = GoogleDoc>, fillcolor="#f5fef9"] ;
+1 [label=<feature_(0,30) &le; 0.06<br/>gini = 0.521<br/>samples = 258<br/>value = [119, 6, 133]<br/>class = Youtube>, fillcolor="#f2ebfc"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<feature_(0,31) &le; 0.12<br/>gini = 0.044<br/>samples = 132<br/>value = [0, 3, 129]<br/>class = Youtube>, fillcolor="#843ee6"] ;
+1 -> 2 ;
+3 [label=<gini = 0.0<br/>samples = 128<br/>value = [0, 0, 128]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+2 -> 3 ;
+4 [label=<feature_(5,16) &le; 0.003<br/>gini = 0.375<br/>samples = 4<br/>value = [0, 3, 1]<br/>class = GoogleDoc>, fillcolor="#7beeab"] ;
+2 -> 4 ;
+5 [label=<gini = 0.0<br/>samples = 3<br/>value = [0, 3, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+4 -> 5 ;
+6 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 0, 1]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+4 -> 6 ;
+7 [label=<feature_(0,28) &le; 0.002<br/>gini = 0.106<br/>samples = 126<br/>value = [119, 3, 4]<br/>class = GoogleDrive>, fillcolor="#e68844"] ;
+1 -> 7 ;
+8 [label=<feature_(15,0) &le; 0.015<br/>gini = 0.375<br/>samples = 4<br/>value = [0, 1, 3]<br/>class = Youtube>, fillcolor="#ab7bee"] ;
+7 -> 8 ;
+9 [label=<gini = 0.0<br/>samples = 3<br/>value = [0, 0, 3]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+8 -> 9 ;
+10 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+8 -> 10 ;
+11 [label=<feature_(4,30) &le; 0.025<br/>gini = 0.048<br/>samples = 122<br/>value = [119, 2, 1]<br/>class = GoogleDrive>, fillcolor="#e6843e"] ;
+7 -> 11 ;
+12 [label=<feature_(31,2) &le; 0.624<br/>gini = 0.017<br/>samples = 120<br/>value = [119, 0, 1]<br/>class = GoogleDrive>, fillcolor="#e5823b"] ;
+11 -> 12 ;
+13 [label=<gini = 0.0<br/>samples = 119<br/>value = [119, 0, 0]<br/>class = GoogleDrive>, fillcolor="#e58139"] ;
+12 -> 13 ;
+14 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 0, 1]<br/>class = Youtube>, fillcolor="#8139e5"] ;
+12 -> 14 ;
+15 [label=<gini = 0.0<br/>samples = 2<br/>value = [0, 2, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+11 -> 15 ;
+16 [label=<gini = 0.0<br/>samples = 140<br/>value = [0, 140, 0]<br/>class = GoogleDoc>, fillcolor="#39e581"] ;
+0 -> 16 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}
