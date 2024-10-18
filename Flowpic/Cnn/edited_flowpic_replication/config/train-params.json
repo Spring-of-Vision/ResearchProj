@@ -1,7 +1,7 @@
 {
     "source": "/content/drive/MyDrive/Colab Notebooks/first chunk",
-    "outdir": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/",
-    "outfile": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/model-histonly.h5",
+    "outdir": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/out/",
+    "outfile": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/out/model-histonly.h5",
     "batch_size": 2,
     "epochs": 20,
     "validation_size": 0.2,
