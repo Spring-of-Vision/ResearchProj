@@ -1,0 +1,7 @@
+{
+  "modelpath": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/model-histonly.h5",
+  "weightspath": "/content/drive/MyDrive/Colab Notebooks/edited_flowpic_replication/data/trustee/checkpoint.weights.h5",
+  "datapath": "/content/drive/MyDrive/Colab Notebooks/first chunk",
+  "batch_size": 1,
+  "dimensions_to_use": 1
+}
