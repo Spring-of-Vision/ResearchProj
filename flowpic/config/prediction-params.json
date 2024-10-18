@@ -1,7 +1,0 @@
-{
-  "modelpath": "data/out/model-histonly.h5",
-  "weightspath": "data/out/checkpoint.weights.h5",
-  "datapath": "G:/features/testing",
-  "batch_size": 1,
-  "dimensions_to_use": 1
-}

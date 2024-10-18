@@ -1,8 +1,0 @@
-{
-    "source": "data/raw",
-    "outdir": "data/preprocessed",
-    "pattern": "*",
-    "chunk_length": "1s",
-    "isolate_flow": false,
-    "dominating_threshold": 0.9
-}
